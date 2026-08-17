@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Primary Meta Tags -->
-    <title>Shamis Shakeel — Operations, Analytics & Digital Systems Dashboard</title>
-    <meta name="title" content="Shamis Shakeel — Professional Portfolio & Dashboard">
-    <meta name="description" content="Professional dashboard of Shamis Shakeel. Open for roles in Operations, Data Analytics, Administration, Customer Success, and Digital Systems.">
+    <title>Shamis Shakeel — Professional CV & Interactive Dashboard</title>
+    <meta name="title" content="Shamis Shakeel — Portfolio & Systems Dashboard">
+    <meta name="description" content="Professional portfolio and CV of Shamis Shakeel. Specialized in Operations, Data Analytics, Administrative Support, and Digital Systems.">
     <meta name="author" content="Shamis Shakeel">
 
-    <!-- Open Graph / WhatsApp Preview -->
+    <!-- Open Graph / Social Media Preview -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Shamis Shakeel — Operations & Systems Specialist">
-    <meta property="og:description" content="Explore metrics, live web applications, experience, and verified certifications.">
+    <meta property="og:title" content="Shamis Shakeel — Operations & Digital Systems Specialist">
+    <meta property="og:description" content="Explore live web applications, experience timeline, verified certificates, and system management portfolio.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
@@ -91,13 +91,14 @@
             width: 320px;
             background-color: var(--surface);
             border-right: 1px solid var(--border);
-            padding: 40px 24px;
+            padding: 35px 22px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: fixed;
             height: 100vh;
             z-index: 100;
+            overflow-y: auto;
         }
 
         .profile-box {
@@ -105,11 +106,11 @@
         }
 
         .avatar {
-            width: 95px;
-            height: 95px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            margin: 0 auto 18px;
+            margin: 0 auto 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -133,22 +134,55 @@
         }
 
         .user-name {
-            font-size: 1.45rem;
+            font-size: 1.4rem;
             font-weight: 800;
             letter-spacing: -0.5px;
             margin-bottom: 4px;
+            text-transform: uppercase;
         }
 
         .user-title {
             display: inline-block;
             color: var(--primary);
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 700;
             background: rgba(0, 229, 255, 0.08);
             padding: 4px 14px;
             border-radius: 20px;
             border: 1px solid rgba(0, 229, 255, 0.25);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+        }
+
+        .personal-details-box {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 20px;
+            text-align: left;
+            font-size: 0.8rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-item i {
+            color: var(--primary);
+            width: 16px;
+            text-align: center;
+        }
+
+        .detail-item strong {
+            color: var(--text-main);
         }
 
         .nav-menu {
@@ -164,7 +198,7 @@
             padding: 10px 14px;
             border-radius: 10px;
             font-weight: 600;
-            font-size: 0.86rem;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -180,7 +214,8 @@
 
         .sidebar-footer {
             border-top: 1px solid var(--border);
-            padding-top: 20px;
+            padding-top: 18px;
+            margin-top: 20px;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -523,7 +558,7 @@
             gap: 6px;
         }
 
-        /* CERTIFICATIONS GRID WITH VERIFICATION BUTTONS */
+        /* CERTIFICATIONS GRID */
         .cert-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -594,7 +629,59 @@
             box-shadow: 0 0 12px var(--primary-glow);
         }
 
-        /* STRENGHTS GRID */
+        .badge-in-progress {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--accent-amber);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            align-self: flex-start;
+        }
+
+        /* PERSONAL DETAILS GRID */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .info-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 16px 20px;
+            border-radius: 12px;
+        }
+
+        .info-card-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .info-card-value {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .info-card-value a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .info-card-value a:hover {
+            text-decoration: underline;
+        }
+
+        /* STRENGTHS GRID */
         .strengths-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -669,11 +756,11 @@
 
         /* PRINT STYLES */
         @media print {
-            .sidebar, .mobile-bar, .dashboard-header, #scrollTopBtn, #toast, .skill-filters, .verify-link { display: none !important; }
+            .sidebar, .mobile-bar, .dashboard-header, #scrollTopBtn, #toast, .skill-filters, .verify-link, .badge-in-progress { display: none !important; }
             .main-dashboard { margin-left: 0 !important; padding: 0 !important; }
             body { background: white !important; color: black !important; }
-            .card, .metric-card, .project-card, .cert-card { background: white !important; border: 1px solid #ddd !important; box-shadow: none !important; color: black !important; }
-            .section-title, .role-title, .metric-value, .cert-title { color: black !important; }
+            .card, .metric-card, .project-card, .cert-card, .info-card { background: white !important; border: 1px solid #ddd !important; box-shadow: none !important; color: black !important; }
+            .section-title, .role-title, .metric-value, .cert-title, .user-name { color: black !important; }
             a { color: black !important; }
         }
     </style>
@@ -685,7 +772,7 @@
     <!-- Mobile Top Navigation Bar -->
     <div class="mobile-bar">
         <div style="font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
-            <i class="fa-solid fa-terminal" style="color: var(--primary);"></i> Shamis Shakeel
+            <i class="fa-solid fa-terminal" style="color: var(--primary);"></i> SHAMIS SHAKEEL
         </div>
         <button onclick="toggleMenu()" style="background:none; border:none; color: var(--text-main); font-size: 1.4rem; cursor: pointer;" aria-label="Toggle Navigation Menu">
             <i class="fa-solid fa-bars" id="menuIcon"></i>
@@ -699,20 +786,49 @@
                 SS
                 <div class="status-badge" title="Active & Available"></div>
             </div>
-            <h1 class="user-name">Shamis Shakeel</h1>
-            <span class="user-title">Operations & Systems Specialist</span>
+            <h1 class="user-name">SHAMIS SHAKEEL</h1>
+            <span class="user-title">Operations, Analytics & Systems Specialist</span>
+
+            <!-- Quick Personal Details Box -->
+            <div class="personal-details-box">
+                <div class="detail-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Block 7, Gulistan-e-Jauhar, Karachi</span>
+                </div>
+                <div class="detail-item">
+                    <i class="fa-solid fa-calendar-day"></i>
+                    <span>10 Dec 2004 (Age 21)</span>
+                </div>
+                <div class="detail-item">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Male | Religion: Islam</span>
+                </div>
+                <div class="detail-item">
+                    <i class="fa-solid fa-language"></i>
+                    <span>Languages: <strong>English, Urdu</strong></span>
+                </div>
+                <div class="detail-item">
+                    <i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i>
+                    <a href="https://www.linkedin.com/in/shamis-shakeel-589484351/" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 700;">LinkedIn Profile</a>
+                </div>
+            </div>
 
             <ul class="nav-menu">
-                <li><a href="#summary" class="active" onclick="closeMenu()"><i class="fa-solid fa-chart-line"></i> Dashboard Overview</a></li>
-                <li><a href="#experience" onclick="closeMenu()"><i class="fa-solid fa-briefcase"></i> Experience Timeline</a></li>
+                <li><a href="#summary" class="active" onclick="closeMenu()"><i class="fa-solid fa-chart-line"></i> Summary</a></li>
+                <li><a href="#personal" onclick="closeMenu()"><i class="fa-solid fa-id-card"></i> Personal Profile</a></li>
+                <li><a href="#experience" onclick="closeMenu()"><i class="fa-solid fa-briefcase"></i> Experience</a></li>
                 <li><a href="#projects" onclick="closeMenu()"><i class="fa-solid fa-laptop-code"></i> Live Systems</a></li>
                 <li><a href="#skills" onclick="closeMenu()"><i class="fa-solid fa-layer-group"></i> Skill Matrix</a></li>
                 <li><a href="#education" onclick="closeMenu()"><i class="fa-solid fa-graduation-cap"></i> Education & Certs</a></li>
-                <li><a href="#strengths" onclick="closeMenu()"><i class="fa-solid fa-shield-halved"></i> Key Strengths</a></li>
+                <li><a href="#strengths" onclick="closeMenu()"><i class="fa-solid fa-shield-halved"></i> Strengths</a></li>
             </ul>
         </div>
 
         <div class="sidebar-footer">
+            <a href="https://www.linkedin.com/in/shamis-shakeel-589484351/" target="_blank" class="action-btn">
+                <span><i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i> LinkedIn Profile</span>
+                <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i>
+            </a>
             <a href="https://wa.me/923428020029" target="_blank" class="action-btn">
                 <span><i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> +92 342 8020029</span>
                 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i>
@@ -721,9 +837,6 @@
                 <span><i class="fa-solid fa-envelope" style="color: var(--primary);"></i> Copy Email</span>
                 <i class="fa-solid fa-copy" style="font-size: 0.7rem;"></i>
             </button>
-            <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 4px;">
-                📍 Karachi, Pakistan | 🗣️ English, Urdu
-            </div>
         </div>
     </aside>
 
@@ -734,7 +847,7 @@
         <div class="dashboard-header">
             <div class="openness-pill">
                 <i class="fa-solid fa-circle-dot" style="color: var(--accent-green);"></i>
-                Open to Opportunities in Operations, Analytics, Administration & Digital Systems
+                Open for Operations, Analytics, Administration & Digital Systems Roles
             </div>
             <button class="export-btn" onclick="window.print()">
                 <i class="fa-solid fa-file-pdf"></i> Save / Export PDF
@@ -749,7 +862,7 @@
                 </div>
                 <div>
                     <div class="metric-value">2+ Years</div>
-                    <div class="metric-label">Hands-on Experience</div>
+                    <div class="metric-label">Practical Experience</div>
                 </div>
             </div>
 
@@ -768,8 +881,8 @@
                     <i class="fa-solid fa-code-branch"></i>
                 </div>
                 <div>
-                    <div class="metric-value">3 Live</div>
-                    <div class="metric-label">Web Systems Built</div>
+                    <div class="metric-value">3 Deployed</div>
+                    <div class="metric-label">Live Web Systems</div>
                 </div>
             </div>
 
@@ -778,8 +891,8 @@
                     <i class="fa-solid fa-certificate"></i>
                 </div>
                 <div>
-                    <div class="metric-value">4 Passed</div>
-                    <div class="metric-label">Verified Certifications</div>
+                    <div class="metric-value">5 Courses</div>
+                    <div class="metric-label">Verified & Active Certs</div>
                 </div>
             </div>
         </div>
@@ -790,11 +903,60 @@
                 <i class="fa-solid fa-user-astronaut"></i> Executive Summary
             </div>
             <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.8;">
-                Adaptive and detail-driven professional with a proven track record in operational management, high-volume cash counter controls, ledger reconciliation, customer service, and digital systems development. Equipped with hands-on technical skills in Microsoft Excel, Power BI, Power Query, DAX, web tools (HTML/CSS/JS), and AI productivity suites (Copilot, ChatGPT, Gemini). Open to dynamic openings across Operations, Data Analytics, Administrative Support, Customer Success, and Digital Systems Management.
+                Adaptive, system-oriented professional with extensive operational experience managing cash counters, high-volume transactions, ledger reconciliations, and customer support workflows. Highly proficient in operational analytics, administrative support tools, Microsoft Excel, Power BI, Power Query, DAX, HTML/CSS/JavaScript web applications, and modern AI productivity workflows (Microsoft 365 Copilot, ChatGPT, Gemini). Seeking impactful roles across Operations, Data Analytics, Administrative Assistance, Customer Success, and Digital Systems Management.
             </p>
         </section>
 
-        <!-- 2. WORK EXPERIENCE TIMELINE -->
+        <!-- 2. FULL PERSONAL PROFILE SECTION -->
+        <section id="personal" class="card">
+            <div class="section-title">
+                <i class="fa-solid fa-id-card"></i> Personal Profile & Information
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-label">Full Name</div>
+                    <div class="info-card-value">SHAMIS SHAKEEL</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">LinkedIn Profile</div>
+                    <div class="info-card-value">
+                        <a href="https://www.linkedin.com/in/shamis-shakeel-589484351/" target="_blank">
+                            <i class="fa-brands fa-linkedin" style="color: #0a66c2;"></i> Connect on LinkedIn
+                        </a>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Location Address</div>
+                    <div class="info-card-value">Block 7, Gulistan-e-Jauhar, Karachi, Pakistan</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">WhatsApp / Mobile</div>
+                    <div class="info-card-value">+92 342 8020029</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Email Address</div>
+                    <div class="info-card-value">shamisshakeel@gmail.com</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Date of Birth</div>
+                    <div class="info-card-value">10 December 2004</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Gender</div>
+                    <div class="info-card-value">Male</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Religion</div>
+                    <div class="info-card-value">Islam</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Languages Spoken</div>
+                    <div class="info-card-value">English, Urdu</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. WORK EXPERIENCE TIMELINE -->
         <section id="experience" class="card">
             <div class="section-title">
                 <i class="fa-solid fa-briefcase"></i> Work Experience
@@ -860,7 +1022,7 @@
             </div>
         </section>
 
-        <!-- 3. LIVE SYSTEMS & APPLICATIONS -->
+        <!-- 4. LIVE SYSTEMS & APPLICATIONS -->
         <section id="projects" class="card">
             <div class="section-title">
                 <i class="fa-solid fa-laptop-code"></i> Live Web Systems & Applications
@@ -915,7 +1077,7 @@
             </div>
         </section>
 
-        <!-- 4. SKILL MATRIX (FILTERABLE) -->
+        <!-- 5. SKILL MATRIX (FILTERABLE) -->
         <section id="skills" class="card">
             <div class="section-title">
                 <i class="fa-solid fa-layer-group"></i> Skill Matrix & Competencies
@@ -923,18 +1085,19 @@
 
             <div class="skill-filters">
                 <button class="filter-chip active" onclick="filterCategory('all')">All Skills</button>
-                <button class="filter-chip" onclick="filterCategory('ops')">Operations & Cash</button>
+                <button class="filter-chip" onclick="filterCategory('ops')">Operations & Admin</button>
                 <button class="filter-chip" onclick="filterCategory('data')">Data & Analytics</button>
-                <button class="filter-chip" onclick="filterCategory('compliance')">KYC / Compliance</button>
+                <button class="filter-chip" onclick="filterCategory('compliance')">Banking & Compliance</button>
                 <button class="filter-chip" onclick="filterCategory('tech')">Tech & AI Tools</button>
             </div>
 
             <div class="skills-grid" id="skillsGrid">
-                <!-- Operations -->
+                <!-- Operations & Admin -->
+                <span class="skill-tag" data-cat="ops"><i class="fa-solid fa-user-gear" style="color:var(--primary);"></i> Administrative Support</span>
                 <span class="skill-tag" data-cat="ops"><i class="fa-solid fa-vault" style="color:var(--primary);"></i> Cash Control & Balancing</span>
                 <span class="skill-tag" data-cat="ops"><i class="fa-solid fa-scale-balanced" style="color:var(--primary);"></i> Ledger Reconciliation</span>
                 <span class="skill-tag" data-cat="ops"><i class="fa-solid fa-receipt" style="color:var(--primary);"></i> POS Terminal Management</span>
-                <span class="skill-tag" data-cat="ops"><i class="fa-solid fa-headset" style="color:var(--primary);"></i> Customer Relations & Service</span>
+                <span class="skill-tag" data-cat="ops"><i class="fa-solid fa-headset" style="color:var(--primary);"></i> Customer Success & Support</span>
 
                 <!-- Data -->
                 <span class="skill-tag" data-cat="data"><i class="fa-solid fa-file-excel" style="color:var(--accent-green);"></i> Microsoft Excel</span>
@@ -943,24 +1106,25 @@
                 <span class="skill-tag" data-cat="data"><i class="fa-solid fa-calculator" style="color:var(--accent-green);"></i> DAX Calculations</span>
 
                 <!-- Compliance -->
+                <span class="skill-tag" data-cat="compliance"><i class="fa-solid fa-building-columns" style="color:var(--secondary);"></i> Retail Banking Operations</span>
                 <span class="skill-tag" data-cat="compliance"><i class="fa-solid fa-shield-halved" style="color:var(--secondary);"></i> KYC / AML Principles</span>
                 <span class="skill-tag" data-cat="compliance"><i class="fa-solid fa-id-card" style="color:var(--secondary);"></i> Customer Due Diligence (CDD)</span>
                 <span class="skill-tag" data-cat="compliance"><i class="fa-solid fa-magnifying-glass-dollar" style="color:var(--secondary);"></i> Transaction Auditing</span>
 
                 <!-- Tech & AI -->
-                <span class="skill-tag" data-cat="tech"><i class="fa-brands fa-shopify" style="color:#95bf47;"></i> Shopify & Wix Admin</span>
                 <span class="skill-tag" data-cat="tech"><i class="fa-solid fa-robot" style="color:#f43f5e;"></i> MS 365 Copilot</span>
-                <span class="skill-tag" data-cat="tech"><i class="fa-solid fa-brain" style="color:#f43f5e;"></i> AI Prompts (ChatGPT / Gemini / Claude)</span>
+                <span class="skill-tag" data-cat="tech"><i class="fa-solid fa-brain" style="color:#f43f5e;"></i> AI Prompting (ChatGPT / Gemini / Claude)</span>
+                <span class="skill-tag" data-cat="tech"><i class="fa-brands fa-shopify" style="color:#95bf47;"></i> Shopify & Wix Admin</span>
                 <span class="skill-tag" data-cat="tech"><i class="fa-brands fa-html5" style="color:#e34f26;"></i> HTML5 & CSS3</span>
                 <span class="skill-tag" data-cat="tech"><i class="fa-brands fa-js" style="color:#f7df1e;"></i> JavaScript</span>
-                <span class="skill-tag" data-cat="tech"><i class="fa-brands fa-github" style="color:#fff;"></i> GitHub Pages</span>
+                <span class="skill-tag" data-cat="tech"><i class="fa-brands fa-github" style="color:#fff;"></i> GitHub Pages Deployment</span>
             </div>
         </section>
 
-        <!-- 5. EDUCATION & CERTIFICATIONS WITH VERIFICATION LINKS -->
+        <!-- 6. EDUCATION & CERTIFICATIONS -->
         <section id="education" class="card">
             <div class="section-title">
-                <i class="fa-solid fa-graduation-cap"></i> Education & Certifications
+                <i class="fa-solid fa-graduation-cap"></i> Education & Professional Certifications
             </div>
 
             <!-- Education Timeline -->
@@ -987,9 +1151,9 @@
                 </div>
             </div>
 
-            <!-- Certifications Grid with Direct Verification -->
+            <!-- Certifications Grid -->
             <div style="font-weight: 800; margin-bottom: 16px; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
-                <i class="fa-solid fa-award" style="color: var(--accent-green);"></i> Verified Professional Credentials
+                <i class="fa-solid fa-award" style="color: var(--accent-green);"></i> Professional Credentials & Verification Links
             </div>
 
             <div class="cert-grid">
@@ -1050,39 +1214,41 @@
                     </a>
                 </div>
 
-                <!-- In Progress -->
-                <div class="cert-card" style="border-style: dashed;">
+                <!-- Cert 5 (IN PROGRESS) -->
+                <div class="cert-card" style="border-style: dashed; border-color: var(--accent-amber);">
                     <div class="cert-info">
-                        <i class="fa-solid fa-spinner" style="color: var(--primary);"></i>
+                        <i class="fa-solid fa-spinner" style="color: var(--accent-amber);"></i>
                         <div>
-                            <div class="cert-title">AML & KYC Essentials</div>
-                            <div class="cert-issuer">Udemy (60% Completed)</div>
+                            <div class="cert-title">Career Essentials in Administrative Assistance</div>
+                            <div class="cert-issuer">Microsoft and LinkedIn</div>
                         </div>
                     </div>
-                    <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">In Progress</span>
+                    <span class="badge-in-progress">
+                        <i class="fa-solid fa-clock"></i> In Progress
+                    </span>
                 </div>
 
             </div>
         </section>
 
-        <!-- 6. KEY STRENGTHS -->
+        <!-- 7. KEY STRENGTHS -->
         <section id="strengths" class="card">
             <div class="section-title">
                 <i class="fa-solid fa-shield-halved"></i> Core Professional Strengths
             </div>
             <div class="strengths-grid">
-                <div class="strength-card"><i class="fa-solid fa-check"></i> Attention to Detail</div>
-                <div class="strength-card"><i class="fa-solid fa-check"></i> Numerical Accuracy</div>
+                <div class="strength-card"><i class="fa-solid fa-check"></i> Administrative Workflow Control</div>
+                <div class="strength-card"><i class="fa-solid fa-check"></i> Strict Numerical & Cash Accuracy</div>
                 <div class="strength-card"><i class="fa-solid fa-check"></i> Analytical Problem Solving</div>
-                <div class="strength-card"><i class="fa-solid fa-check"></i> Customer Service Focus</div>
-                <div class="strength-card"><i class="fa-solid fa-check"></i> Process Discipline</div>
-                <div class="strength-card"><i class="fa-solid fa-check"></i> Fast Adaptability</div>
+                <div class="strength-card"><i class="fa-solid fa-check"></i> Customer Service Excellence</div>
+                <div class="strength-card"><i class="fa-solid fa-check"></i> Auditing & Ledger Reconciliation</div>
+                <div class="strength-card"><i class="fa-solid fa-check"></i> Fast Technical Adaptability</div>
             </div>
         </section>
 
         <footer style="text-align: center; color: var(--text-muted); font-size: 0.8rem; padding-top: 10px;">
-            <p>© 2026 Shamis Shakeel. All rights reserved.</p>
-            <p style="margin-top: 4px;">Hosted on GitHub Pages | Designed for High-Performance Desktop & Mobile Viewing</p>
+            <p>© 2026 SHAMIS SHAKEEL. All rights reserved.</p>
+            <p style="margin-top: 4px;">Block 7, Gulistan-e-Jauhar, Karachi, Pakistan | Hosted on GitHub Pages</p>
         </footer>
 
     </main>

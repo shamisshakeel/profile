@@ -3,30 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<meta name="theme-color" content="#070e17">
+<meta name="theme-color" content="#0b0f17">
 <meta name="description" content="Shamis Shakeel — Banking Operations, Customer Service, Reconciliation, KYC/AML & Data Analytics Portfolio">
 <title>Shamis Shakeel | Banking & Operations Professional</title>
 
+<!-- html2pdf Library for Clean PDF Generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 <style>
 :root {
-  --bg: #070e17;
-  --bg-gradient: radial-gradient(circle at 15% 15%, rgba(100, 255, 218, 0.07), transparent 45%),
-                 radial-gradient(circle at 85% 85%, rgba(215, 181, 109, 0.08), transparent 45%),
-                 linear-gradient(180deg, #070e17 0%, #0b1726 50%, #070e17 100%);
-  --card-bg: rgba(14, 27, 42, 0.75);
-  --card-solid: #0d1e30;
-  --card-border: rgba(215, 181, 109, 0.2);
-  --card-hover: rgba(215, 181, 109, 0.4);
-  --text: #f1f5f9;
-  --muted: #94a3b8;
+  --bg: #0b0f17;
+  --bg-gradient: radial-gradient(circle at 15% 15%, rgba(250, 204, 21, 0.08), transparent 45%),
+                 radial-gradient(circle at 85% 85%, rgba(234, 179, 8, 0.06), transparent 45%),
+                 linear-gradient(180deg, #0b0f17 0%, #111827 50%, #0b0f17 100%);
+  --card-bg: rgba(17, 24, 39, 0.75);
+  --card-solid: #111827;
+  --card-border: rgba(250, 204, 21, 0.25);
+  --card-hover: rgba(250, 204, 21, 0.5);
+  --text: #f9fafb;
+  --muted: #9ca3af;
   --line: rgba(255, 255, 255, 0.1);
-  --accent: #d7b56d; /* Gold */
-  --accent-light: #f5e6c4;
-  --accent-cyan: #64ffda;
+  --accent: #facc15; /* Modern Vibrant Yellow */
+  --accent-light: #fef08a;
+  --accent-cyan: #eab308;
   --whatsapp: #25d366;
   --whatsapp-hover: #1eaa4f;
-  --success: #4cd964;
-  --warning: #ffb300;
+  --success: #22c55e;
+  --warning: #f59e0b;
   --shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
   --radius: 16px;
   --max-width: 1140px;
@@ -34,20 +37,20 @@
 }
 
 body.light {
-  --bg: #f4f7fb;
-  --bg-gradient: radial-gradient(circle at 15% 15%, rgba(27, 108, 168, 0.06), transparent 45%),
-                 radial-gradient(circle at 85% 85%, rgba(184, 144, 76, 0.06), transparent 45%),
-                 linear-gradient(180deg, #f4f7fb 0%, #e9eff7 100%);
+  --bg: #fefce8;
+  --bg-gradient: radial-gradient(circle at 15% 15%, rgba(234, 179, 8, 0.12), transparent 45%),
+                 radial-gradient(circle at 85% 85%, rgba(202, 138, 4, 0.08), transparent 45%),
+                 linear-gradient(180deg, #fefce8 0%, #fef3c7 100%);
   --card-bg: rgba(255, 255, 255, 0.92);
   --card-solid: #ffffff;
-  --card-border: rgba(15, 30, 51, 0.12);
-  --card-hover: rgba(184, 144, 76, 0.4);
-  --text: #0f172a;
-  --muted: #64748b;
-  --line: rgba(15, 23, 42, 0.1);
-  --accent: #b8904c;
-  --accent-cyan: #0284c7;
-  --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  --card-border: rgba(202, 138, 4, 0.25);
+  --card-hover: rgba(202, 138, 4, 0.6);
+  --text: #1c1917;
+  --muted: #57534e;
+  --line: rgba(28, 25, 23, 0.1);
+  --accent: #ca8a04; /* High-contrast Yellow-Gold for Light Mode */
+  --accent-cyan: #d97706;
+  --shadow: 0 12px 30px rgba(28, 25, 23, 0.08);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -70,11 +73,11 @@ button { font: inherit; border: none; background: none; cursor: pointer; }
 /* Progress Bar */
 .progress-bar {
   position: fixed; top: 0; left: 0; height: 3px; width: 0%;
-  background: linear-gradient(90deg, var(--accent), var(--accent-cyan));
+  background: linear-gradient(90deg, var(--accent), #eab308);
   z-index: 9999; transition: width 0.1s linear;
 }
 
-/* Floating Action Button (WhatsApp Floating Corner Icon on Mobile) */
+/* Floating Action Button */
 .float-whatsapp {
   position: fixed; bottom: 20px; right: 20px; z-index: 990;
   background: var(--whatsapp); color: #fff; width: 54px; height: 54px;
@@ -93,7 +96,7 @@ button { font: inherit; border: none; background: none; cursor: pointer; }
 }
 .nav {
   width: min(var(--max-width), 100%);
-  border: 1px solid var(--line); background: rgba(7, 14, 23, 0.85);
+  border: 1px solid var(--line); background: rgba(11, 15, 23, 0.85);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   border-radius: 16px; padding: 8px 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   transition: background 0.3s, border-color 0.3s;
@@ -104,15 +107,15 @@ button { font: inherit; border: none; background: none; cursor: pointer; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 0.04em; font-size: 15px; }
 .brand-mark {
   width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;
-  border: 1px solid rgba(215, 181, 109, 0.4);
-  background: linear-gradient(135deg, rgba(215, 181, 109, 0.25), rgba(100, 255, 218, 0.1));
+  border: 1px solid rgba(250, 204, 21, 0.4);
+  background: linear-gradient(135deg, rgba(250, 204, 21, 0.25), rgba(234, 179, 8, 0.1));
   color: var(--accent); font-weight: 900; font-size: 14px;
 }
 
 .links { display: flex; gap: 4px; align-items: center; }
 .links a { font-size: 13px; font-weight: 600; color: var(--muted); padding: 8px 12px; border-radius: 8px; transition: all 0.2s; }
-.links a:hover, .links a.active { color: var(--text); background: rgba(255, 255, 255, 0.08); }
-.light .links a:hover, .light .links a.active { background: rgba(0, 0, 0, 0.06); }
+.links a:hover, .links a.active { color: var(--accent); background: rgba(250, 204, 21, 0.08); }
+.light .links a:hover, .light .links a.active { background: rgba(202, 138, 4, 0.1); }
 
 .nav-actions { display: flex; gap: 8px; align-items: center; }
 .icon-btn {
@@ -123,7 +126,7 @@ button { font: inherit; border: none; background: none; cursor: pointer; }
 .icon-btn:hover, .icon-btn:active { border-color: var(--accent); color: var(--accent); }
 .menu-btn { display: none; }
 
-/* Mobile Menu Backdrop & Drawer */
+/* Mobile Menu Overlay */
 .mobile-overlay {
   position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
   z-index: 998; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
@@ -138,11 +141,11 @@ button { font: inherit; border: none; background: none; cursor: pointer; }
   white-space: nowrap; min-height: 44px; touch-action: manipulation;
 }
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent) 0%, #b8904c 100%);
-  color: #08101a; border-color: transparent;
-  box-shadow: 0 6px 20px rgba(215, 181, 109, 0.25);
+  background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+  color: #0b0f17; border-color: transparent;
+  box-shadow: 0 6px 20px rgba(250, 204, 21, 0.3);
 }
-.btn-primary:hover, .btn-primary:active { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(215, 181, 109, 0.35); }
+.btn-primary:hover, .btn-primary:active { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(250, 204, 21, 0.45); }
 .btn-whatsapp {
   background: var(--whatsapp); color: #ffffff; border-color: transparent;
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.25);
@@ -154,7 +157,7 @@ button { font: inherit; border: none; background: none; cursor: pointer; }
 }
 .btn-linkedin:hover, .btn-linkedin:active { background: #006097; transform: translateY(-2px); }
 .btn-secondary { background: rgba(255, 255, 255, 0.04); color: var(--text); }
-.btn-secondary:hover, .btn-secondary:active { background: rgba(255, 255, 255, 0.1); border-color: var(--accent); transform: translateY(-2px); }
+.btn-secondary:hover, .btn-secondary:active { background: rgba(250, 204, 21, 0.1); border-color: var(--accent); transform: translateY(-2px); }
 .btn-sm { padding: 8px 14px; font-size: 12px; border-radius: 8px; min-height: 36px; }
 
 /* Hero Section Layout */
@@ -165,11 +168,11 @@ button { font: inherit; border: none; background: none; cursor: pointer; }
 
 .badge {
   display: inline-flex; align-items: center; gap: 8px;
-  border: 1px solid rgba(76, 217, 100, 0.3); background: rgba(76, 217, 100, 0.08);
-  color: var(--success); padding: 6px 14px; border-radius: 999px;
+  border: 1px solid rgba(250, 204, 21, 0.35); background: rgba(250, 204, 21, 0.1);
+  color: var(--accent); padding: 6px 14px; border-radius: 999px;
   font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
 }
-.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); box-shadow: 0 0 8px var(--success); }
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
 
 h1 { font-size: clamp(30px, 5vw, 54px); line-height: 1.15; letter-spacing: -0.03em; margin: 18px 0 14px; font-weight: 800; }
 .gradient-text {
@@ -239,7 +242,7 @@ h2 { font-size: clamp(24px, 3.2vw, 36px); letter-spacing: -0.02em; font-weight: 
   box-shadow: 0 0 8px var(--accent);
 }
 .role-title { font-size: 15.5px; font-weight: 800; color: var(--text); }
-.company-name { color: var(--accent-cyan); font-weight: 700; font-size: 13px; margin-top: 2px; }
+.company-name { color: var(--accent); font-weight: 700; font-size: 13px; margin-top: 2px; }
 .timeline-date { font-size: 11px; color: var(--muted); margin-top: 2px; font-weight: 600; }
 
 ul.bullet-list { list-style: none; margin-top: 10px; }
@@ -261,7 +264,7 @@ ul.bullet-list li::before {
   display: flex; align-items: center; gap: 6px; transition: border-color 0.2s;
 }
 .pill:hover { border-color: var(--accent); }
-.pill-accent { border-color: rgba(215, 181, 109, 0.35); background: rgba(215, 181, 109, 0.08); }
+.pill-accent { border-color: rgba(250, 204, 21, 0.4); background: rgba(250, 204, 21, 0.1); }
 
 /* Certifications Layout */
 .cert-card {
@@ -278,16 +281,64 @@ ul.bullet-list li::before {
   font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 999px;
   text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap;
 }
-.tag-completed { background: rgba(76, 217, 100, 0.12); color: var(--success); border: 1px solid rgba(76, 217, 100, 0.3); }
-.tag-progress { background: rgba(255, 179, 0, 0.12); color: var(--warning); border: 1px solid rgba(255, 179, 0, 0.3); }
+.tag-completed { background: rgba(34, 197, 94, 0.12); color: var(--success); border: 1px solid rgba(34, 197, 94, 0.3); }
+.tag-progress { background: rgba(245, 158, 11, 0.12); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.3); }
 .cert-action { margin-top: 12px; }
+
+/* Responsive Certificate Image Grid */
+.cert-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-top: 20px;
+}
+.cert-img-card {
+  border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+  background: var(--card-solid); transition: transform 0.25s ease, border-color 0.25s ease;
+  display: flex; flex-direction: column; cursor: pointer;
+}
+.cert-img-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.cert-img-wrapper {
+  width: 100%; height: 120px; overflow: hidden; background: rgba(0,0,0,0.2);
+  display: flex; align-items: center; justify-content: center;
+}
+.cert-img {
+  width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;
+}
+.cert-img-card:hover .cert-img { transform: scale(1.05); }
+.cert-img-caption {
+  padding: 8px 10px; font-size: 11.5px; font-weight: 700; color: var(--text);
+  border-top: 1px solid var(--line); text-align: center;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* Full-Screen Certificate Lightbox Modal */
+.cert-modal {
+  display: none; position: fixed; inset: 0; z-index: 10000;
+  background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  align-items: center; justify-content: center; padding: 20px;
+}
+.cert-modal.active { display: flex; }
+.cert-modal-content {
+  max-width: 92vw; max-height: 85vh; object-fit: contain;
+  border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  border: 1px solid rgba(250, 204, 21, 0.3);
+}
+.cert-modal-close {
+  position: absolute; top: 20px; right: 25px; color: #ffffff;
+  font-size: 32px; font-weight: bold; cursor: pointer;
+  background: rgba(255, 255, 255, 0.15); width: 44px; height: 44px;
+  border-radius: 50%; display: grid; place-items: center;
+  line-height: 1; transition: all 0.25s ease; border: 1px solid rgba(255,255,255,0.2);
+}
+.cert-modal-close:hover {
+  background: var(--accent); color: #0b0f17; transform: scale(1.1);
+}
 
 /* Contact Section */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .contact-card-featured {
   display: flex; flex-direction: column; gap: 14px; padding: 20px;
   border: 1px solid var(--card-border); border-radius: 14px;
-  background: rgba(215, 181, 109, 0.04);
+  background: rgba(250, 204, 21, 0.04);
 }
 .contact-item {
   display: flex; align-items: center; gap: 12px; padding: 12px 16px;
@@ -297,7 +348,7 @@ ul.bullet-list li::before {
 .contact-item:hover, .contact-item:active { border-color: var(--accent); transform: translateX(3px); }
 .contact-icon {
   width: 40px; height: 40px; border-radius: 10px;
-  background: rgba(215, 181, 109, 0.12); color: var(--accent);
+  background: rgba(250, 204, 21, 0.15); color: var(--accent);
   display: grid; place-items: center; font-size: 18px; flex-shrink: 0;
 }
 .contact-icon.wa { background: rgba(37, 211, 102, 0.12); color: var(--whatsapp); }
@@ -311,11 +362,26 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* MOBILE RESPONSIVE OPTIMIZATIONS (Smartphones & Tablets) */
+/* Hidden CV PDF Template Container */
+#cvPdfContent {
+  display: none;
+  background: #ffffff;
+  color: #111827;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 30px;
+  width: 780px;
+  margin: 0 auto;
+}
+#cvPdfContent h1 { font-size: 24px; color: #0b0f17; font-weight: 800; margin-bottom: 4px; }
+#cvPdfContent h2 { font-size: 15px; color: #ca8a04; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid #ca8a04; padding-bottom: 4px; margin: 16px 0 10px; }
+#cvPdfContent p, #cvPdfContent li { font-size: 11.5px; line-height: 1.5; color: #374151; }
+#cvPdfContent ul { list-style: square; padding-left: 18px; }
+
+/* MOBILE RESPONSIVE OPTIMIZATIONS */
 @media (max-width: 900px) {
   .hero { padding-top: 100px; text-align: center; min-height: auto; }
   .hero-grid { grid-template-columns: 1fr; gap: 32px; }
-  .hero-grid > div:nth-child(1) { order: 1; } /* Profile picture on top on mobile */
+  .hero-grid > div:nth-child(1) { order: 1; }
   .hero-grid > div:nth-child(2) { order: 2; }
   .hero p { margin: 0 auto; }
   .hero-cta { justify-content: center; width: 100%; }
@@ -327,7 +393,6 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
   
   .menu-btn { display: grid; }
   
-  /* Mobile Navigation Menu Slide/Fade */
   .links {
     position: fixed; top: 70px; left: 16px; right: 16px;
     flex-direction: column; align-items: stretch; padding: 14px;
@@ -354,6 +419,8 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
   .metric-card span { font-size: 10px; }
   .float-whatsapp { width: 48px; height: 48px; bottom: 16px; right: 16px; }
   .contact-text strong { font-size: 12.5px; }
+  .cert-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .cert-img-wrapper { height: 100px; }
 }
 </style>
 </head>
@@ -364,7 +431,13 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
 <!-- Mobile Navigation Overlay -->
 <div class="mobile-overlay" id="mobileOverlay"></div>
 
-<!-- Floating WhatsApp Button (Positioned at corner of screen on phone) -->
+<!-- Full Screen Certificate Lightbox Modal -->
+<div class="cert-modal" id="certModal" aria-hidden="true">
+  <span class="cert-modal-close" id="certModalClose" title="Close Modal">&times;</span>
+  <img class="cert-modal-content" id="certModalImg" src="" alt="Enlarged Certificate">
+</div>
+
+<!-- Floating WhatsApp Button -->
 <a href="https://wa.me/923428020029" target="_blank" rel="noopener noreferrer" class="float-whatsapp" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
   <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.762.459 3.48 1.332 5.001L2 22l5.12-1.338c1.472.802 3.136 1.223 4.887 1.224h.005c5.505 0 9.988-4.478 9.989-9.985 0-2.667-1.037-5.175-2.923-7.062A9.923 9.923 0 0 0 12.012 2zm0 18.232h-.004c-1.5 0-2.966-.402-4.242-1.16l-.304-.181-3.155.825.84-3.073-.198-.315a8.238 8.238 0 0 1-1.264-4.345c.001-4.552 3.708-8.257 8.265-8.257 2.206 0 4.28.86 5.838 2.42 1.557 1.558 2.416 3.633 2.415 5.84-.001 4.553-3.708 8.258-8.261 8.258zm4.53-6.182c-.248-.124-1.468-.724-1.696-.807-.228-.083-.394-.124-.56.124-.166.248-.642.807-.787.973-.145.166-.29.186-.538.062-.248-.124-1.048-.386-1.996-1.231-.738-.658-1.236-1.47-1.381-1.718-.145-.248-.015-.382.109-.505.112-.112.248-.29.373-.435.124-.145.166-.248.248-.415.083-.166.042-.311-.021-.435-.062-.124-.56-1.35-.767-1.848-.201-.485-.406-.419-.56-.427h-.477c-.166 0-.435.062-.663.311-.228.248-.871.851-.871 2.075 0 1.224.892 2.406 1.016 2.572.124.166 1.756 2.681 4.254 3.76.594.257 1.058.41 1.42.525.597.19 1.14.163 1.57.099.48-.071 1.468-.601 1.675-1.182.207-.581.207-1.078.145-1.182-.062-.104-.228-.166-.476-.29z"/></svg>
 </a>
@@ -386,6 +459,7 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
         <a href="#contact">Contact</a>
       </div>
       <div class="nav-actions">
+        <button class="btn btn-primary btn-sm" id="downloadCvNavBtn">📥 Download CV</button>
         <button class="icon-btn" id="themeBtn" title="Toggle Theme" aria-label="Toggle theme">☼</button>
         <button class="icon-btn menu-btn" id="menuBtn" title="Toggle Navigation Menu" aria-label="Toggle menu">☰</button>
       </div>
@@ -397,7 +471,7 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
   <!-- Hero Section -->
   <section class="hero">
     <div class="container hero-grid">
-      <!-- Profile Photo Card (Shows on Top on Mobile) -->
+      <!-- Profile Photo Card -->
       <div class="reveal">
         <div class="profile-card">
           <img class="profile-photo" src="cvpic.jpg" alt="Shamis Shakeel" onerror="this.onerror=null; this.src='cvpic.png';">
@@ -416,6 +490,7 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
           Banking Operations and Customer Service Professional with hands-on experience in cash handling, daily reconciliation, POS administration, and e-commerce operations. Dedicated to accuracy, compliance, and data-driven administrative workflows.
         </p>
         <div class="hero-cta">
+          <button class="btn btn-primary" id="downloadCvHeroBtn">📥 Download Full CV (PDF)</button>
           <a class="btn btn-linkedin" href="https://www.linkedin.com/in/shamis-shakeel-589484351/" target="_blank" rel="noopener noreferrer">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.69-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
             LinkedIn
@@ -659,6 +734,37 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
         </div>
       </div>
     </div>
+
+    <!-- Certificate Image Gallery Preview Section (Click to Open Full Screen) -->
+    <div style="margin-top: 24px;">
+      <h3 style="font-size: 14px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 800; margin-bottom: 8px;">Certificate Images (Click to View Full Screen)</h3>
+      <div class="cert-grid">
+        <div class="cert-img-card">
+          <div class="cert-img-wrapper">
+            <img src="rb.jpg" alt="Retail Banking Certificate" class="cert-img" onerror="this.onerror=null; this.src='rb.png';">
+          </div>
+          <div class="cert-img-caption">Retail Banking</div>
+        </div>
+        <div class="cert-img-card">
+          <div class="cert-img-wrapper">
+            <img src="365.jpg" alt="MS 365 Copilot Certificate" class="cert-img" onerror="this.onerror=null; this.src='365.png';">
+          </div>
+          <div class="cert-img-caption">MS 365 Copilot</div>
+        </div>
+        <div class="cert-img-card">
+          <div class="cert-img-wrapper">
+            <img src="c.jpg" alt="Communication Foundations Certificate" class="cert-img" onerror="this.onerror=null; this.src='c.png';">
+          </div>
+          <div class="cert-img-caption">Communication</div>
+        </div>
+        <div class="cert-img-card">
+          <div class="cert-img-wrapper">
+            <img src="bi.jpg" alt="Power BI Certificate" class="cert-img" onerror="this.onerror=null; this.src='bi.png';">
+          </div>
+          <div class="cert-img-caption">Power BI</div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Education Section -->
@@ -675,7 +781,7 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
           <div class="timeline-dot"></div>
           <div class="role-title">Bachelor of Business & Information Technology (BBIT)</div>
           <div class="company-name">Virtual University of Pakistan</div>
-          <div class="timeline-date">Currently Enrolled (Zero Semester Foundation / Degree Program)</div>
+          <div class="timeline-date">Currently Enrolled</div>
           <p style="font-size: 13.5px; color: var(--muted); margin-top: 6px;">
             Focusing on business administration, financial principles, information technology systems, and organizational operations.
           </p>
@@ -684,16 +790,15 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
         <!-- Intermediate -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="role-title">Intermediate (HSSC) — Computer Science</div>
-          <div class="company-name">Board of Intermediate Education Karachi (BIEK)</div>
+          <div class="role-title">Intermediate Part I & II (General Science)</div>
+          <div class="company-name">Govt. College Murad Memon Goth</div>
           <div class="timeline-date">Completed</div>
         </div>
 
         <!-- Matriculation -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="role-title">Matriculation (SSC) — Computer Science</div>
-          <div class="company-name">Jauhar Grammar School / Karachi Board</div>
+          <div class="role-title">Matriculation (General Science)</div>
           <div class="timeline-date">Completed</div>
         </div>
       </div>
@@ -714,7 +819,7 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
             Feel free to connect directly via email or WhatsApp for banking operations, financial workflows, administrative support, or corporate opportunities.
           </p>
 
-          <!-- Contact Item: Email Only -->
+          <!-- Contact Item: Email -->
           <a href="mailto:shamis.shakeel@outlook.com" class="contact-item">
             <div class="contact-icon">✉</div>
             <div class="contact-text">
@@ -723,7 +828,7 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
             </div>
           </a>
 
-          <!-- Contact Item: WhatsApp Only -->
+          <!-- Contact Item: WhatsApp -->
           <a href="https://wa.me/923428020029" target="_blank" rel="noopener noreferrer" class="contact-item">
             <div class="contact-icon wa">
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.762.459 3.48 1.332 5.001L2 22l5.12-1.338c1.472.802 3.136 1.223 4.887 1.224h.005c5.505 0 9.988-4.478 9.989-9.985 0-2.667-1.037-5.175-2.923-7.062A9.923 9.923 0 0 0 12.012 2zm0 18.232h-.004c-1.5 0-2.966-.402-4.242-1.16l-.304-.181-3.155.825.84-3.073-.198-.315a8.238 8.238 0 0 1-1.264-4.345c.001-4.552 3.708-8.257 8.265-8.257 2.206 0 4.28.86 5.838 2.42 1.557 1.558 2.416 3.633 2.415 5.84-.001 4.553-3.708 8.258-8.261 8.258zm4.53-6.182c-.248-.124-1.468-.724-1.696-.807-.228-.083-.394-.124-.56.124-.166.248-.642.807-.787.973-.145.166-.29.186-.538.062-.248-.124-1.048-.386-1.996-1.231-.738-.658-1.236-1.47-1.381-1.718-.145-.248-.015-.382.109-.505.112-.112.248-.29.373-.435.124-.145.166-.248.248-.415.083-.166.042-.311-.021-.435-.062-.124-.56-1.35-.767-1.848-.201-.485-.406-.419-.56-.427h-.477c-.166 0-.435.062-.663.311-.228.248-.871.851-.871 2.075 0 1.224.892 2.406 1.016 2.572.124.166 1.756 2.681 4.254 3.76.594.257 1.058.41 1.42.525.597.19 1.14.163 1.57.099.48-.071 1.468-.601 1.675-1.182.207-.581.207-1.078.145-1.182-.062-.104-.228-.166-.476-.29z"/></svg>
@@ -754,6 +859,125 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
     </div>
   </section>
 </main>
+
+<!-- Hidden Layout for Generating Clear Merged CV PDF -->
+<div id="cvPdfContent">
+  <!-- Header with Circle Profile Picture & Personal Details -->
+  <div style="display: flex; align-items: center; gap: 20px; border-bottom: 2px solid #ca8a04; padding-bottom: 16px;">
+    <img src="cvpic.jpg" alt="Shamis Shakeel Profile" onerror="this.onerror=null; this.src='cvpic.png';" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid #ca8a04; flex-shrink: 0;">
+    <div>
+      <h1 style="margin: 0; font-size: 24px;">SHAMIS SHAKEEL</h1>
+      <p style="font-weight: bold; color: #ca8a04; margin: 2px 0 6px 0; font-size: 13px;">Banking Operations & Data Analytics Professional</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; font-size: 11px; color: #4b5563;">
+        <div><strong>Date of Birth:</strong> 10 Dec 2004</div>
+        <div><strong>Gender:</strong> Male</div>
+        <div><strong>Religion:</strong> Islam</div>
+        <div><strong>Languages:</strong> English (8/10), Urdu (5/10)</div>
+        <div><strong>Email:</strong> shamis.shakeel@outlook.com</div>
+        <div><strong>Phone / WA:</strong> +92 342 8020029</div>
+        <div><strong>Location:</strong> Karachi, Sindh, Pakistan</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Executive Summary -->
+  <h2>Executive Summary</h2>
+  <p>
+    Results-oriented operations specialist with practical experience leading counter operations, cash management, and customer service. Proven capability in balancing high-volume daily cash drawers (PKR 500K+), performing balance sheet reconciliations, managing inventory databases, and driving retail sales. Currently pursuing a Bachelor of Business & Information Technology (BBIT) at the Virtual University of Pakistan, combined with active coursework in KYC/AML compliance, retail banking, and data analytics (Power BI).
+  </p>
+
+  <!-- Work Experience -->
+  <h2>Work Experience</h2>
+  <div style="margin-bottom: 10px;">
+    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 12.5px;">
+      <span>Counter Service & Cash Operations</span>
+      <span>Jun 2024 – Jul 2026</span>
+    </div>
+    <div style="color: #ca8a04; font-size: 11px; font-weight: bold; margin-bottom: 4px;">Ahmed Hanif Rajput Pakwan Restaurant — Karachi, Pakistan</div>
+    <ul>
+      <li>Handled and reconciled daily transactions exceeding PKR 500,000 with accuracy and compliance.</li>
+      <li>Managed cash, card, and POS billing, reconciliation, and end-of-day closing.</li>
+      <li>Delivered customer service and resolved transaction discrepancies promptly.</li>
+      <li>Maintained financial and operational records for audits and reporting.</li>
+      <li>Supervised and trained staff to improve efficiency and ensure process discipline.</li>
+    </ul>
+  </div>
+
+  <div style="margin-bottom: 10px;">
+    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 12.5px;">
+      <span>Shawadé (E-Commerce Start-up) – Founder & Operations Lead</span>
+      <span>2025 – 2026</span>
+    </div>
+    <div style="color: #ca8a04; font-size: 11px; font-weight: bold; margin-bottom: 4px;">Shawadé (E-Commerce Start-up)</div>
+    <ul>
+      <li>Managed orders, customer support, and daily operations.</li>
+      <li>Built and maintained Shopify/Wix stores.</li>
+      <li>Recorded sales and expenses using Excel and Google Sheets.</li>
+    </ul>
+  </div>
+
+  <!-- Education History -->
+  <h2>Academic Qualifications</h2>
+  <div style="margin-bottom: 6px;">
+    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 12px;">
+      <span>Bachelor of Business & Information Technology (BBIT)</span>
+      <span>Enrolled</span>
+    </div>
+    <div style="font-size: 11px; color: #4b5563;">Virtual University of Pakistan</div>
+  </div>
+  <div style="margin-bottom: 6px;">
+    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 12px;">
+      <span>Intermediate Part I & II (General Science)</span>
+      <span>Completed</span>
+    </div>
+    <div style="font-size: 11px; color: #4b5563;">Govt. College Murad Memon Goth</div>
+  </div>
+  <div style="margin-bottom: 6px;">
+    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 12px;">
+      <span>Matriculation (General Science)</span>
+      <span>Completed</span>
+    </div>
+  </div>
+
+  <!-- Skills & Competencies -->
+  <h2>Skills & Competencies</h2>
+  <p><strong>Banking & Operations:</strong> Retail Banking, Cash Management, Daily Reconciliation, POS Operations, KYC/AML Compliance, Ledger Maintenance.</p>
+  <p><strong>Technical & Analytics:</strong> Power BI, Microsoft 365 Copilot, Excel Spreadsheets, Data Analytics, POS Systems, HTML/CSS/JS Basics.</p>
+  <p><strong>Soft Skills:</strong> Clear Communication, Customer Relationships, Administrative Support, Problem Solving, Team Leadership.</p>
+
+  <!-- Certifications List -->
+  <h2>Certifications & Courses</h2>
+  <ul>
+    <li><strong>Introduction to Retail Banking (CPD Accredited)</strong> — Alison Verified Credential</li>
+    <li><strong>Learning Microsoft 365 Copilot for Work (2025)</strong> — LinkedIn Learning</li>
+    <li><strong>Communication Foundations</strong> — LinkedIn Learning</li>
+    <li><strong>Power BI for Data Analysts</strong> — Professional Course</li>
+    <li><strong>KYC (Know Your Customer) & AML Compliance</strong> — In Progress</li>
+  </ul>
+
+  <!-- Certificate Images Page Break -->
+  <div style="page-break-before: always; padding-top: 10px;">
+    <h2>Certificates & Qualifications Attachments</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px;">
+      <div style="border: 1px solid #d1d5db; border-radius: 8px; padding: 6px; text-align: center;">
+        <img src="rb.jpg" alt="Retail Banking Certificate" onerror="this.onerror=null; this.src='rb.png';" style="width: 100%; max-height: 220px; object-fit: contain;">
+        <p style="font-weight: bold; font-size: 11px; margin-top: 4px; color: #111827;">Retail Banking (Alison CPD)</p>
+      </div>
+      <div style="border: 1px solid #d1d5db; border-radius: 8px; padding: 6px; text-align: center;">
+        <img src="365.jpg" alt="MS 365 Copilot Certificate" onerror="this.onerror=null; this.src='365.png';" style="width: 100%; max-height: 220px; object-fit: contain;">
+        <p style="font-weight: bold; font-size: 11px; margin-top: 4px; color: #111827;">MS 365 Copilot (LinkedIn)</p>
+      </div>
+      <div style="border: 1px solid #d1d5db; border-radius: 8px; padding: 6px; text-align: center;">
+        <img src="c.jpg" alt="Communication Certificate" onerror="this.onerror=null; this.src='c.png';" style="width: 100%; max-height: 220px; object-fit: contain;">
+        <p style="font-weight: bold; font-size: 11px; margin-top: 4px; color: #111827;">Communication Foundations</p>
+      </div>
+      <div style="border: 1px solid #d1d5db; border-radius: 8px; padding: 6px; text-align: center;">
+        <img src="bi.jpg" alt="Power BI Certificate" onerror="this.onerror=null; this.src='bi.png';" style="width: 100%; max-height: 220px; object-fit: contain;">
+        <p style="font-weight: bold; font-size: 11px; margin-top: 4px; color: #111827;">Power BI Data Analytics</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Footer -->
 <footer>
@@ -795,10 +1019,66 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
 
     mobileOverlay.addEventListener('click', () => toggleMenu(false));
 
-    // Close menu when clicking navigation links
     document.querySelectorAll('#navLinks a').forEach(link => {
       link.addEventListener('click', () => toggleMenu(false));
     });
+
+    // Full Screen Certificate Image Lightbox Modal
+    const certModal = document.getElementById('certModal');
+    const certModalImg = document.getElementById('certModalImg');
+    const certModalClose = document.getElementById('certModalClose');
+
+    document.querySelectorAll('.cert-img-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const img = card.querySelector('img');
+        if (img) {
+          certModalImg.src = img.src;
+          certModal.classList.add('active');
+          certModal.setAttribute('aria-hidden', 'false');
+        }
+      });
+    });
+
+    const closeCertModal = () => {
+      certModal.classList.remove('active');
+      certModal.setAttribute('aria-hidden', 'true');
+    };
+
+    certModalClose.addEventListener('click', closeCertModal);
+    certModal.addEventListener('click', (e) => {
+      if (e.target === certModal) closeCertModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && certModal.classList.contains('active')) {
+        closeCertModal();
+      }
+    });
+
+    // Clean CV PDF Download Generator
+    const generateCvPdf = () => {
+      const element = document.getElementById('cvPdfContent');
+      element.style.display = 'block';
+
+      const opt = {
+        margin:       [0.3, 0.3, 0.3, 0.3],
+        filename:     'Shamis_Shakeel_CV.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true, logging: false },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
+        pagebreak:    { mode: ['css', 'legacy'] }
+      };
+
+      html2pdf().set(opt).from(element).save().then(() => {
+        element.style.display = 'none';
+      }).catch(err => {
+        console.error('PDF Generation Error:', err);
+        element.style.display = 'none';
+      });
+    };
+
+    document.getElementById('downloadCvNavBtn').addEventListener('click', generateCvPdf);
+    document.getElementById('downloadCvHeroBtn').addEventListener('click', generateCvPdf);
 
     // Scroll Progress & Active Nav Link Highlight
     const progressBar = document.getElementById('progressBar');

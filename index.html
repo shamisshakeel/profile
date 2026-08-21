@@ -362,15 +362,18 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* Hidden CV PDF Template Container */
+/* Off-Screen Pre-Rendered CV PDF Template Container */
 #cvPdfContent {
-  display: none;
+  position: absolute;
+  left: -9999px;
+  top: 0;
   background: #ffffff;
   color: #111827;
   font-family: Arial, Helvetica, sans-serif;
   padding: 30px;
   width: 780px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 #cvPdfContent h1 { font-size: 24px; color: #0b0f17; font-weight: 800; margin-bottom: 4px; }
 #cvPdfContent h2 { font-size: 15px; color: #ca8a04; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid #ca8a04; padding-bottom: 4px; margin: 16px 0 10px; }
@@ -860,7 +863,7 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
   </section>
 </main>
 
-<!-- Hidden Layout for Generating Clear Merged CV PDF -->
+<!-- Off-Screen Layout for Generating Clear Merged CV PDF -->
 <div id="cvPdfContent">
   <!-- Header with Circle Profile Picture & Personal Details -->
   <div style="display: flex; align-items: center; gap: 20px; border-bottom: 2px solid #ca8a04; padding-bottom: 16px;">
@@ -958,20 +961,20 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
   <!-- Certificate Images Page Break -->
   <div style="page-break-before: always; padding-top: 10px;">
     <h2>Certificates & Qualifications Attachments</h2>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px;">
-      <div style="border: 1px solid #d1d5db; border-radius: 8px; padding: 6px; text-align: center;">
+    <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px;">
+      <div style="width: calc(50% - 7px); border: 1px solid #d1d5db; border-radius: 8px; padding: 6px; text-align: center; box-sizing: border-box;">
         <img src="rb.jpg" alt="Retail Banking Certificate" onerror="this.onerror=null; this.src='rb.png';" style="width: 100%; max-height: 220px; object-fit: contain;">
         <p style="font-weight: bold; font-size: 11px; margin-top: 4px; color: #111827;">Retail Banking (Alison CPD)</p>
       </div>
-      <div style="border: 1px solid #d1d5db; border-radius: 8px; padding: 6px; text-align: center;">
+      <div style="width: calc(50% - 7px); border: 1px solid #d1d5db; border-radius: 8px; padding: 6px; text-align: center; box-sizing: border-box;">
         <img src="365.jpg" alt="MS 365 Copilot Certificate" onerror="this.onerror=null; this.src='365.png';" style="width: 100%; max-height: 220px; object-fit: contain;">
         <p style="font-weight: bold; font-size: 11px; margin-top: 4px; color: #111827;">MS 365 Copilot (LinkedIn)</p>
       </div>
-      <div style="border: 1px solid #d1d5db; border-radius: 8px; padding: 6px; text-align: center;">
+      <div style="width: calc(50% - 7px); border: 1px solid #d1d5db; border-radius: 8px; padding: 6px; text-align: center; box-sizing: border-box;">
         <img src="c.jpg" alt="Communication Certificate" onerror="this.onerror=null; this.src='c.png';" style="width: 100%; max-height: 220px; object-fit: contain;">
         <p style="font-weight: bold; font-size: 11px; margin-top: 4px; color: #111827;">Communication Foundations</p>
       </div>
-      <div style="border: 1px solid #d1d5db; border-radius: 8px; padding: 6px; text-align: center;">
+      <div style="width: calc(50% - 7px); border: 1px solid #d1d5db; border-radius: 8px; padding: 6px; text-align: center; box-sizing: border-box;">
         <img src="bi.jpg" alt="Power BI Certificate" onerror="this.onerror=null; this.src='bi.png';" style="width: 100%; max-height: 220px; object-fit: contain;">
         <p style="font-weight: bold; font-size: 11px; margin-top: 4px; color: #111827;">Power BI Data Analytics</p>
       </div>
@@ -1055,30 +1058,53 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
       }
     });
 
-    // Clean CV PDF Download Generator
-    const generateCvPdf = () => {
+    // Clean, Fully Synchronized CV PDF Download Generator
+    const generateCvPdf = async (btn) => {
+      const originalText = btn.textContent;
+      btn.textContent = '⏳ Preparing PDF...';
+      btn.disabled = true;
+
       const element = document.getElementById('cvPdfContent');
-      element.style.display = 'block';
+
+      // Wait for all images inside #cvPdfContent to completely load & decode
+      const images = Array.from(element.querySelectorAll('img'));
+      await Promise.all(images.map(img => {
+        if (img.complete) {
+          return img.decode ? img.decode().catch(() => {}) : Promise.resolve();
+        }
+        return new Promise(resolve => {
+          img.onload = resolve;
+          img.onerror = resolve;
+        });
+      }));
+
+      // Extra delay to guarantee browser render paint finish
+      await new Promise(resolve => setTimeout(resolve, 400));
 
       const opt = {
         margin:       [0.3, 0.3, 0.3, 0.3],
         filename:     'Shamis_Shakeel_CV.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true, logging: false },
+        html2canvas:  { scale: 2, useCORS: true, allowTaint: true, logging: false },
         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
         pagebreak:    { mode: ['css', 'legacy'] }
       };
 
-      html2pdf().set(opt).from(element).save().then(() => {
-        element.style.display = 'none';
-      }).catch(err => {
+      try {
+        await html2pdf().set(opt).from(element).save();
+      } catch (err) {
         console.error('PDF Generation Error:', err);
-        element.style.display = 'none';
-      });
+      } finally {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
     };
 
-    document.getElementById('downloadCvNavBtn').addEventListener('click', generateCvPdf);
-    document.getElementById('downloadCvHeroBtn').addEventListener('click', generateCvPdf);
+    const navBtn = document.getElementById('downloadCvNavBtn');
+    const heroBtn = document.getElementById('downloadCvHeroBtn');
+
+    if (navBtn) navBtn.addEventListener('click', () => generateCvPdf(navBtn));
+    if (heroBtn) heroBtn.addEventListener('click', () => generateCvPdf(heroBtn));
 
     // Scroll Progress & Active Nav Link Highlight
     const progressBar = document.getElementById('progressBar');

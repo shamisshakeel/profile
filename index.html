@@ -410,17 +410,37 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
 }
 
 @media (max-width: 480px) {
-  .container { width: calc(100% - 24px); }
-  .section { padding: 40px 0; }
-  h1 { font-size: 28px; }
-  h2 { font-size: 22px; }
-  .metric-card { padding: 14px 8px; }
-  .metric-card strong { font-size: 20px; }
-  .metric-card span { font-size: 10px; }
-  .float-whatsapp { width: 48px; height: 48px; bottom: 16px; right: 16px; }
-  .contact-text strong { font-size: 12.5px; }
-  .cert-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .cert-img-wrapper { height: 100px; }
+  .container { width: calc(100% - 20px); padding: 0 4px; }
+  .nav-wrapper { padding: 0 10px; top: 8px; }
+  .nav { padding: 6px 12px; }
+  .brand { font-size: 13px; gap: 6px; }
+  .brand-mark { width: 32px; height: 32px; font-size: 12px; }
+  .nav-actions { gap: 4px; }
+  .nav-actions .btn-sm { padding: 6px 10px; font-size: 11px; min-height: 32px; }
+  .icon-btn { width: 34px; height: 34px; font-size: 14px; }
+  
+  .section { padding: 35px 0; }
+  h1 { font-size: 26px; line-height: 1.2; }
+  h2 { font-size: 20px; }
+  .badge { font-size: 10px; padding: 4px 10px; }
+  
+  .metrics { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .metric-card { padding: 12px 6px; }
+  .metric-card strong { font-size: 18px; }
+  .metric-card span { font-size: 9.5px; }
+  
+  .card { padding: 14px; }
+  .timeline { padding-left: 14px; }
+  .timeline-dot { left: -19px; width: 8px; height: 8px; }
+  .role-title { font-size: 14px; }
+  .company-name { font-size: 12px; }
+  ul.bullet-list li { font-size: 12.5px; }
+  
+  .pill { font-size: 11px; padding: 5px 9px; }
+  .float-whatsapp { width: 46px; height: 46px; bottom: 14px; right: 14px; }
+  .contact-text strong { font-size: 11.5px; }
+  .cert-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .cert-img-wrapper { height: 90px; }
 }
 </style>
 </head>
@@ -459,7 +479,7 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
         <a href="#contact">Contact</a>
       </div>
       <div class="nav-actions">
-        <button class="btn btn-primary btn-sm" id="downloadCvNavBtn">📥 Download CV</button>
+        <a class="btn btn-primary btn-sm" id="downloadCvNavBtn" href="shamiscv.pdf" download="shamiscv.pdf">📥 Download CV</a>
         <button class="icon-btn" id="themeBtn" title="Toggle Theme" aria-label="Toggle theme">☼</button>
         <button class="icon-btn menu-btn" id="menuBtn" title="Toggle Navigation Menu" aria-label="Toggle menu">☰</button>
       </div>
@@ -490,7 +510,7 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
           Banking Operations and Customer Service Professional with hands-on experience in cash handling, daily reconciliation, POS administration, and e-commerce operations. Dedicated to accuracy, compliance, and data-driven administrative workflows.
         </p>
         <div class="hero-cta">
-          <button class="btn btn-primary" id="downloadCvHeroBtn">📥 Download Full CV (PDF)</button>
+          <a class="btn btn-primary" id="downloadCvHeroBtn" href="shamiscv.pdf" download="shamiscv.pdf">📥 Download Full CV (PDF)</a>
           <a class="btn btn-linkedin" href="https://www.linkedin.com/in/shamis-shakeel-589484351/" target="_blank" rel="noopener noreferrer">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.69-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
             LinkedIn
@@ -1058,31 +1078,6 @@ footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted)
         closeCertModal();
       }
     });
-
-    // Clean CV PDF Download Generator
-    const generateCvPdf = () => {
-      const element = document.getElementById('cvPdfContent');
-      element.style.display = 'block';
-
-      const opt = {
-        margin:       [0.3, 0.3, 0.3, 0.3],
-        filename:     'Shamis_Shakeel_CV.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true, logging: false },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
-        pagebreak:    { mode: ['css', 'legacy'] }
-      };
-
-      html2pdf().set(opt).from(element).save().then(() => {
-        element.style.display = 'none';
-      }).catch(err => {
-        console.error('PDF Generation Error:', err);
-        element.style.display = 'none';
-      });
-    };
-
-    document.getElementById('downloadCvNavBtn').addEventListener('click', generateCvPdf);
-    document.getElementById('downloadCvHeroBtn').addEventListener('click', generateCvPdf);
 
     // Scroll Progress & Active Nav Link Highlight
     const progressBar = document.getElementById('progressBar');
